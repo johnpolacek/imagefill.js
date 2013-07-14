@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>imagefill.js</title>
+        <meta name="description" content="imagefill.js - The jQuery plugin for making an image fill its container (and be centered)">
+        <meta name="viewport" content="width=device-width">
+
+        <link href='http://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+        
+        <!-- Extra Strength Responsive Grids https://github.com/dfcb/extra-strength-responsive-grids -->
+        <link rel="stylesheet" href="css/grid.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class="block">
+                    <div class="imagefill-icon">
+                        <img src="img/fill-icon.png" alt="">
+                    </div>
+                    <h1>imagefill.js</h1>
+                </div>
+                <div class="block">
+                    <h2>The jQuery plugin for making an image fill its container (and be centered)</h2>
+                    <p><small><em>a potentially useful tool for Responsive Web Design</em></small></p>
+                </div>
+                <div class="block">
+                    <p>Created by <a href="http://johnpolacek.com" target="_blank">John Polacek</a></p>
+                    <div class="follow-btn">
+                        <iframe scrolling="no" frameborder="0" allowtransparency="true" src="http://platform.twitter.com/widgets/follow_button.1347008535.html#_=1347293944835&amp;id=twitter-widget-0&amp;lang=en&amp;screen_name=johnpolacek&amp;show_count=false&amp;show_screen_name=true&amp;size=l" class="twitter-follow-button" style="width: 169px; height: 28px;" title="Twitter Follow Button" data-twttr-rendered="true"></iframe> 
+                    </div>
+                </div>
+            </header>
+
+            <div class="simple-demo">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            
+            <div class="block">
+                <h3>Simple Example</h3>
+                <p>Given this html:</p>
+                <pre>&lt;div class="container"&gt;&lt;img src="myawesomeimage" /&gt;&lt;/div&gt;</pre>
+                <p>Do this:</p>
+                <pre>$('.container').imageFill(); 
+// image stretches to fill container</pre>
+            </div>
+
+            <div class="block">
+                <h3>Grid Example</h3>
+                <p>Given a grid like this:</p>
+                <pre></pre>
+                <p>Do this:</p>
+                <pre>$('.grid-quarter').imageFill(); 
+// image stretches to fill container</pre>
+                <div class="block clearfix">
+                    <div class="grid-demo">
+                        <div class="grid-quarter">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+                        </div>
+                        <div class="grid-quarter">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+                        </div>
+                        <div class="grid-quarter">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+                        </div>
+                        <div class="grid-quarter">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+                        </div>
+                    </div>
+                </div>
+                <p>Check out <a href="responsive.html" target="_blank">this simple responsive grid example</a>.</p>
+            </div>
+
+            <div class="block">
+                <h3>Options</h3>
+                <p><strong>runOnce</strong><br>
+                    Imagefill continuously checks to see if the size of the image container changes, then it adjusts the size of the image inside. To only run once, set to false.
+                </p> 
+                <pre>$('.img-container').imagefill({runOnce:true});</pre>
+                <p><strong>throttle</strong><br>
+                    Imagefill continuously checks to see if the size of the image container changes, then it adjusts the size of the image inside. This option lets you adjust the frequency of this check (default is 100ms). To run at a higher frequency, such as for an animation rate like 60fps, do this:</p>
+                <pre>$('.animating-container').imagefill({throttle:1000/60})</pre>
+            </div>
+
+
+            <div class="block">
+                <h3>Requires:</h3>
+                <ul>
+                    <li><a href="https://github.com/desandro/imagesloaded">imagesLoaded</a></li>
+                </ul>
+            </div> 
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
+        <script src="js/jquery-imagefill.js"></script>
+        <script>
+
+            $('.simple-demo')
+                // call image fill throttled to 60 fps (default is only 6 fps, works for most situations)
+                .imagefill({throttle:1000/60})
+                // add looped animation queue
+                .queue(function(next) {
+                    $(this).animate({width:640},2000).delay(2000).animate({width:90},2000).delay(2000);
+                    $(this).queue(arguments.callee);
+                    next();
+                });
+
+            $('.grid-quarter').imagefill();
+            $('.grid-demo').queue(function(next) {
+                $(this).animate({width:320},4000).animate({width:640},4000);
+                $(this).queue(arguments.callee);
+                next();
+            });
+        </script>
+
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>
