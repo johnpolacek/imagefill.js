@@ -26,10 +26,13 @@ a, a:hover, a:visited {
 	color: #20A6DB;
 	font-weight: bold;
 }
-header {
+header,footer {
 	text-align: center;
 	width: 480px;
 	margin: 0 auto;
+}
+footer {
+	margin-top: 40px;
 }
 pre {
 	border: solid 1px #ccc;
