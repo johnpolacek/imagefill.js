@@ -26,8 +26,8 @@
     var $container = this,
         $img = $container.find('img').addClass('loading').css({'position':'absolute'}),
         imageAspect = 1/1,
-        containerH = $container.height(),
-        containerW = $container.width(),
+        containersH = 0,
+        containersW = 0,
         defaults = {
           runOnce: false,
           throttle : 100  // 10fps
@@ -38,42 +38,57 @@
     var containerPos = $container.css('position');
     $container.css({'overflow':'hidden','position':(containerPos === 'static') ? 'relative' : containerPos});
 
+    // set containerH, containerW
+    $container.each(function() {
+      containersH += $(this).height();
+      containersW += $(this).width();
+    });
+
     // wait for image to load, then fit it inside the container
     $container.imagesLoaded().done(function($img) {
       imageAspect = $img.width() / $img.height();
-      fitImage($img.removeClass('loading'));
+      $img.removeClass('loading');
+      fitImages();
       if (!settings.runOnce) {
         checkSizeChange();
       }
     });
 
-    function fitImage() {
+    function fitImages() {
 
-      containerW = $container.width();
-      containerH = $container.height();
-      var containerAspect = containerW/containerH;
-      if (containerAspect < imageAspect) {
-        // taller
-        $img.css({
-            width: 'auto',
-            height: containerH,
-            top:0,
-            left:-(containerH*imageAspect-containerW)/2
-          });
-      } else {
-        // wider
-        $img.css({
-            width: containerW,
-            height: 'auto',
-            top:-(containerW/imageAspect-containerH)/2,
-            left:0
-          });
-      }
+      $container.each(function() {
+        var containerW = $(this).width();
+        var containerH = $(this).height();
+        var containerAspect = containerW/containerH;
+        if (containerAspect < imageAspect) {
+          // taller
+          $(this).find('img').css({
+              width: 'auto',
+              height: containerH,
+              top:0,
+              left:-(containerH*imageAspect-containerW)/2
+            });
+        } else {
+          // wider
+          $(this).find('img').css({
+              width: containerW,
+              height: 'auto',
+              top:-(containerW/imageAspect-containerH)/2,
+              left:0
+            });
+        }
+      });
     }
 
     function checkSizeChange() {
-      if (containerH !== $container.height() || containerW !== $container.width()) {
-        fitImage();
+      var checkW = 0,
+          checkH = 0;
+      $container.each(function() {
+        checkH += $(this).height();
+        checkW += $(this).width();
+      });
+      if (containersH !== checkH || containersW !== checkW) {
+        fitImages();
       }
       setTimeout(checkSizeChange, settings.throttle);
     }

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>imagefill.js | Packery Example</title>
+        <meta name="description" content="imagefill.js - The jQuery plugin for making an image fill its container (and be centered)">
+        <meta name="viewport" content="width=device-width">
+
+        <link href='http://fonts.googleapis.com/css?family=Patua+One' rel='stylesheet' type='text/css'>
+
+        <link rel="stylesheet" href="css/main.css">
+
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+        <![endif]-->
+    </head>
+    <body>
+        <header class="block">
+            <div class="block">
+                <h1>Packery Example</h1>
+                <h3>(via <a href="http://codepen.io/desandro/pen/nfkth">this Codepen</a>)</h3>
+            </div>
+            <div class="block">
+                <p>Don’t know about <a href="http://packery.metafizzy.co/">Packery</a>? It is the bin-packing layout library that is from the same <a href="https://github.com/desandro">mad genius</a> who created jQuery <a href="http://masonry.desandro.com/">Masonry</a> and <a href="http://isotope.metafizzy.co/">isotope</a>.</p>
+            </div>
+            <div class="block">
+                <h2>Resize your browser window to see the magic</h2>
+            </div>
+        </header>
+        <div class="packery clearfix">
+            <div class="gutter-sizer"></div>
+            <div class="grid-sizer"></div>
+            <div class="item w2">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item w2 h2">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item w2">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item h2">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item h2">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item h2">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+            <div class="item">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+            </div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/2.1.0/jquery.imagesloaded.min.js"></script>
+        <script src="http://packery.metafizzy.co/packery.pkgd.min.js"></script>
+        <script src="js/jquery-imagefill.js"></script>
+        <script>
+            // http://packery.metafizzy.co/packery.pkgd.js added as external resource
+
+            $( function() {
+              var $container = $('.packery').packery({
+                itemSelector: '.item',
+                columnWidth: 150,
+                gutter: 20,
+                // disable resize
+                isResizeBound: false
+              });
+
+              var pckry = $container.data('packery');
+
+              var gutter = pckry.options.gutter || 0;
+              var columnWidth = pckry.options.columnWidth + gutter;
+
+              function onResize() {
+                var outsideSize = getSize( $container.parent()[0] ).innerWidth;
+                var cols = Math.floor( outsideSize / ( columnWidth ) );
+                // set container width to columns
+                $container.width( cols * columnWidth - gutter )
+                // manually trigger layout
+                $container.packery();
+                // run imagefill inside the resize event, using runOnce
+                $('.item').imagefill({runOnce:true});
+              }
+
+              // debounce resize event
+              var resizeTimeout;
+              $( window ).on( 'resize', function() {
+                if ( resizeTimeout ) {
+                  clearTimeout( resizeTimeout );
+                }
+                resizeTimeout = setTimeout( onResize, 100 );
+              })
+
+              // initial trigger 
+              onResize();
+
+            });
+            
+        </script>
+
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src='//www.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>
