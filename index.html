@@ -17,6 +17,15 @@
             <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
             <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
         <![endif]-->
+
+        <!-- Prevent FOUC (flash of unstyled content) -->
+        <style type="text/css">
+            .no-fouc {display: none;}
+        </style>
+         
+        <script type="text/javascript">
+            document.documentElement.className = 'no-fouc';
+        </script>
     </head>
     <body>
         <div class="wrapper">
@@ -42,7 +51,7 @@
             <a href="https://github.com/johnpolacek/imagefill.js/"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
             <div class="simple-demo">
-                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+                <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" class="loading" alt="Octocat Github Mascot">
             </div>
 
             <div class="block">
@@ -69,16 +78,16 @@
                 <div class="block clearfix">
                     <div class="grid-demo">
                         <div class="grid-quarter">
-                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" class="loading" alt="Octocat Github Mascot">
                         </div>
                         <div class="grid-quarter">
-                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" class="loading" alt="Octocat Github Mascot">
                         </div>
                         <div class="grid-quarter">
-                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" class="loading" alt="Octocat Github Mascot">
                         </div>
                         <div class="grid-quarter">
-                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" alt="Octocat Github Mascot">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" class="loading" alt="Octocat Github Mascot">
                         </div>
                     </div>
                 </div>
@@ -105,11 +114,12 @@
             </div> 
 
             <div class="block">
-                <h3>Other useful tools:</h3>
+                <h3>If you like imagefill.js, you might also like:</h3>
                 <ul>
                     <li><a href="https://github.com/tsvensen/equalize.js/">equalize.js</a> - The jQuery plugin for equalizing the height or width of your elements</li>
                     <li><a href="http://dfcb.github.io/extra-strength-responsive-grids/">Extra Strength Responsive Grids</a> - The Fluid CSS Grid System for Responsive Web Design. Take total control of your layouts.</li>
                     <li><a href="http://johnpolacek.github.io/stacktable.js/">stacktable.js</a> - jQuery plugin for stacking tables on small screens.</li>
+                    <li><a href="http://johnpolacek.com/2012/10/03/help-prevent-fouc/">Prevent FOUC</a> - Prevent FOUC with 2 easy steps.</li>
                 </ul>
             </div> 
         </div>
@@ -136,6 +146,8 @@
                 $(this).queue(arguments.callee);
                 next();
             });
+
+            $('.no-fouc').removeClass('no-fouc');
         </script>
 
         <script>

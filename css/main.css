@@ -51,6 +51,9 @@ header {
 	height: 120px;
 	border: solid 2px #ccc;
 }
+.no-fouc .loading {
+	display: none;
+}
 
 /* responsive demo */
 .responsive-demo .image-square { height: 240px; }

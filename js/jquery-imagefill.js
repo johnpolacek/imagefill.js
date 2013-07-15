@@ -24,7 +24,7 @@
   $.fn.imagefill = function(options) {
 
     var $container = this,
-        $img = $container.find('img').css({'position':'absolute'}),
+        $img = $container.find('img').addClass('loading').css({'position':'absolute'}),
         imageAspect = 1/1,
         containerH = $container.height(),
         containerW = $container.width(),
@@ -41,7 +41,7 @@
     // wait for image to load, then fit it inside the container
     $container.imagesLoaded().done(function($img) {
       imageAspect = $img.width() / $img.height();
-      fitImage($img);
+      fitImage($img.removeClass('loading'));
       if (!settings.runOnce) {
         checkSizeChange();
       }
