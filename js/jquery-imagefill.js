@@ -30,7 +30,7 @@
         containersW = 0,
         defaults = {
           runOnce: false,
-          throttle : 100  // 10fps
+          throttle : 200  // 5fps
         },
         settings = $.extend({}, defaults, options);
 

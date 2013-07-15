@@ -58,6 +58,27 @@ pre {
 	height: 120px;
 	border: solid 2px #ccc;
 }
+.sizes-example {
+	float: left;
+	border: solid 2px #ccc;
+	margin-left: 1%;
+}
+.sizes-example1 {
+	width: 19%;
+	height: 120px;
+}
+.sizes-example2 {
+	width: 36%;
+	height: 60px;
+}
+.sizes-example3 {
+	width: 9%;
+	height: 180px;
+}
+.sizes-example4 {
+	width: 29%;
+	height: 150px;
+}
 .no-fouc .loading {
 	display: none;
 }

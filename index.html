@@ -112,6 +112,22 @@
                 <p>Given images that vary in sizes, for example using jQuery Masonry or Packery, do this:</p>
                 <pre>$('.item').imageFill(); 
 // image stretches to fill container</pre>
+                <div class="block clearfix">
+                    <div class="sizes-demo">
+                        <div class="sizes-example sizes-example1">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" class="loading" alt="Octocat Github Mascot">
+                        </div>
+                        <div class="sizes-example sizes-example2">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" class="loading" alt="Octocat Github Mascot">
+                        </div>
+                        <div class="sizes-example sizes-example3">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" class="loading" alt="Octocat Github Mascot">
+                        </div>
+                        <div class="sizes-example sizes-example4">
+                            <img src="http://octodex.github.com/images/daftpunktocat-thomas.gif" class="loading" alt="Octocat Github Mascot">
+                        </div>
+                    </div>
+                </div>
                 <p>Check out <a href="packery.html" target="_blank">this simple packery example</a> which is also a nice use case for the <code>{runOnce:true}</code> option.</p>
             </div>
 
@@ -170,6 +186,9 @@
                 $(this).queue(arguments.callee);
                 next();
             });
+
+            // VARIED SIZES EXAMPLE
+            $('.sizes-example').imagefill({runOnce:true});
 
             // Prevent FOUC
             $('.no-fouc').removeClass('no-fouc');
