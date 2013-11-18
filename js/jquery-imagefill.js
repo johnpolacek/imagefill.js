@@ -55,10 +55,14 @@
     });
 
     function fitImages() {
-
+      containersH  = 0;
+      containersW = 0;
       $container.each(function() {
         var containerW = $(this).width();
-        var containerH = $(this).height();
+        var containerH = $(this).height();        
+        containersH += $(this).height();
+        containersW += $(this).width();
+        
         var containerAspect = containerW/containerH;
         if (containerAspect < imageAspect) {
           // taller
@@ -86,7 +90,7 @@
       $container.each(function() {
         checkH += $(this).height();
         checkW += $(this).width();
-      });
+      });      
       if (containersH !== checkH || containersW !== checkW) {
         fitImages();
       }
