@@ -45,7 +45,7 @@
     });
 
     // wait for image to load, then fit it inside the container
-    $container.imagesLoaded().done(function($img) {
+    $container.imagesLoaded().done(function(img) {
       imageAspect = $img.width() / $img.height();
       $img.removeClass('loading');
       fitImages();
