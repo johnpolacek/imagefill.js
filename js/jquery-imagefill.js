@@ -57,6 +57,7 @@
     function fitImages() {
 
       $container.each(function() {
+        imageAspect = $(this).find('img').width() / $(this).find('img').height();
         var containerW = $(this).width();
         var containerH = $(this).height();
         var containerAspect = containerW/containerH;
