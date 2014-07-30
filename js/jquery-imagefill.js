@@ -40,8 +40,8 @@
 
     // set containerH, containerW
     $container.each(function() {
-      containersH += $(this).height();
-      containersW += $(this).width();
+      containersH += $(this).outerHeight();
+      containersW += $(this).outerWidth();
     });
 
     // wait for image to load, then fit it inside the container
@@ -58,8 +58,8 @@
 
       $container.each(function() {
         imageAspect = $(this).find('img').width() / $(this).find('img').height();
-        var containerW = $(this).width();
-        var containerH = $(this).height();
+        var containerW = $(this).outerWidth();
+        var containerH = $(this).outerHeight();
         var containerAspect = containerW/containerH;
         if (containerAspect < imageAspect) {
           // taller
@@ -85,8 +85,8 @@
       var checkW = 0,
           checkH = 0;
       $container.each(function() {
-        checkH += $(this).height();
-        checkW += $(this).width();
+        checkH += $(this).outerHeight();
+        checkW += $(this).outerWidth();
       });
       if (containersH !== checkH || containersW !== checkW) {
         fitImages();
