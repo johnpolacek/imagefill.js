@@ -40,8 +40,8 @@
 
     // set containerH, containerW
     $container.each(function() {
-      containersH += $(this).height();
-      containersW += $(this).width();
+      containersH += $(this).outerHeight();
+      containersW += $(this).outerWidth();
     });
 
     // wait for image to load, then fit it inside the container
@@ -59,11 +59,11 @@
       containersW = 0;
       $container.each(function() {
         imageAspect = $(this).find('img').width() / $(this).find('img').height();
-        var containerW = $(this).width();
-        var containerH = $(this).height();        
-        containersH += $(this).height();
-        containersW += $(this).width();
-        
+        var containerW = $(this).outerWidth(),
+            containerH = $(this).outerHeight();
+        containersH += $(this).outerHeight();
+        containersW += $(this).outerWidth();
+
         var containerAspect = containerW/containerH;
         if (containerAspect < imageAspect) {
           // taller
@@ -89,16 +89,15 @@
       var checkW = 0,
           checkH = 0;
       $container.each(function() {
-        checkH += $(this).height();
-        checkW += $(this).width();
-      });      
+        checkH += $(this).outerHeight();
+        checkW += $(this).outerWidth();
+      });
       if (containersH !== checkH || containersW !== checkW) {
         fitImages();
       }
       setTimeout(checkSizeChange, settings.throttle);
     }
-
-    // return for chaining
+    
     return this;
   };
 
