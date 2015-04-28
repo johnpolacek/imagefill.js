@@ -60,7 +60,7 @@
       containersH  = 0;
       containersW = 0;
       $container.each(function() {
-        imageAspect = $(this).find('img').width() / $(this).find('img').height();
+        imageAspect = $(this).find(settings.target).width() / $(this).find(settings.target).height();
         var containerW = $(this).outerWidth(),
             containerH = $(this).outerHeight();
         containersH += $(this).outerHeight();
