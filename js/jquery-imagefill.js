@@ -24,7 +24,6 @@
   $.fn.imagefill = function(options) {
 
     var $container = this,
-        $img = $container.find('img').addClass('loading').css({'position':'absolute'}),
         imageAspect = 1/1,
         containersH = 0,
         containersW = 0,
@@ -34,6 +33,8 @@
           throttle : 200  // 5fps
         },
         settings = $.extend({}, defaults, options);
+
+    var $img = $container.find(settings.target).addClass('loading').css({'position':'absolute'});
 
     // make sure container isn't position:static
     var containerPos = $container.css('position');
