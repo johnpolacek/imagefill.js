@@ -140,6 +140,9 @@
                 <p><strong>throttle</strong><br>
                     Imagefill continuously checks to see if the size of the image container changes, then it adjusts the size of the image inside. This option lets you adjust the frequency of this check (default is 100ms). To run at a higher frequency, such as for an animation rate like 60fps, do this:</p>
                 <pre>$('.animating-container').imagefill({throttle:1000/60})</pre>
+                <p><strong>target</strong><br>
+                    By default, Imagefill will use 'img' as the target selector. To use a custom selector to tell imagefill which img to target for filling its container use the target option.</p>
+                <pre>$('.animating-container').imagefill({target:'.background-image'})</pre>
             </div>
 
 

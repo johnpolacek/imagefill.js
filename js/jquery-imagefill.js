@@ -30,6 +30,7 @@
         containersW = 0,
         defaults = {
           runOnce: false,
+          target: 'img',
           throttle : 200  // 5fps
         },
         settings = $.extend({}, defaults, options);
@@ -67,7 +68,7 @@
         var containerAspect = containerW/containerH;
         if (containerAspect < imageAspect) {
           // taller
-          $(this).find('img').css({
+          $(this).find(settings.target).css({
               width: 'auto',
               height: containerH,
               top:0,
@@ -75,7 +76,7 @@
             });
         } else {
           // wider
-          $(this).find('img').css({
+          $(this).find(settings.target).css({
               width: containerW,
               height: 'auto',
               top:-(containerW/imageAspect-containerH)/2,
