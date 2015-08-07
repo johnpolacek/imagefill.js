@@ -4,6 +4,8 @@ by [John Polacek](http://johnpolacek.com)
 
 See demo and documentation at the [project page](http://johnpolacek.github.io/imagefill.js)
 
+Requires imagesLoaded - https://github.com/desandro/imagesloaded
+
 * * *
 #### follow [@johnpolacek](https://twitter.com/johnpolacek)
 * * *
