@@ -6,6 +6,9 @@ See demo and documentation at the [project page](http://johnpolacek.github.io/im
 
 Requires imagesLoaded - https://github.com/desandro/imagesloaded
 
+For a jQuery-free version of this plugin, go to:
+https://github.com/StudioThick/imagefill.js
+
 * * *
 #### follow [@johnpolacek](https://twitter.com/johnpolacek)
 * * *
